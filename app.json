@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "DailyRise",
+    "slug": "dailyrise",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./client/public/favicon.ico",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./client/public/favicon.ico",
+      "resizeMode": "contain",
+      "backgroundColor": "#faf5f0"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTabletMode": true,
+      "bundleIdentifier": "com.dailyrise.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./client/public/favicon.ico",
+        "backgroundColor": "#faf5f0"
+      },
+      "package": "com.dailyrise.app",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./client/public/favicon.ico"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "targetSdkVersion": 34,
+            "minSdkVersion": 21
+          }
+        }
+      ]
+    ]
+  }
+}

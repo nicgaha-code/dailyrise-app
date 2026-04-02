@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DailyRise</string>
+    <string name="title_activity_main">DailyRise</string>
+    <string name="package_name">com.dailyrise.app</string>
+    <string name="custom_url_scheme">com.dailyrise.app</string>
+</resources>
