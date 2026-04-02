@@ -1,0 +1,51 @@
+# Gradle files
+.gradle/
+build/
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+.DS_Store
+
+# Android Studio generated files and folders
+.idea/
+.classpath
+.c9/
+*.class
+*.dex
+*.o
+*.so
+*.swp
+*~.nib
+.settings/
+.loadpath
+.externalNativeBuild
+.cxx/
+
+# IntelliJ
+*.iml
+*.iws
+*.ipr
+**/out/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Miscellaneous fragments
+**/android/Flutter/flutter_export_environment.sh
+**/android/Flutter/local.properties
+**/android/Flutter/.gradle/
+**/android/Flutter/gradle-wrapper.jar
+**/android/Flutter/gradlew
+**/android/Flutter/gradlew.bat
+**/android/Flutter/.flutter-plugins
+**/android/Flutter/.flutter-plugins-dependencies
+**/android/Flutter/GeneratedPluginRegistrant.java
