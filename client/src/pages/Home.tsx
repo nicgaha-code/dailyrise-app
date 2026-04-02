@@ -1,25 +1,77 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+// DailyRise – Home Page
+// Design: Organic Warmth / Wabi-Sabi Modernism
+// Sections: Header, Daily Quote Hero, Goals, Manifestation Board, Footer
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
+import { loadData, saveData, updateStreak, type AppData } from "@/lib/storage";
+import QuoteSection from "@/components/QuoteSection";
+import GoalsSection from "@/components/GoalsSection";
+import ManifestationSection from "@/components/ManifestationSection";
+import AppHeader from "@/components/AppHeader";
+import StatsBar from "@/components/StatsBar";
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+  const [appData, setAppData] = useState<AppData | null>(null);
+  const [activeTab, setActiveTab] = useState<'quote' | 'goals' | 'manifestation'>('quote');
+
+  useEffect(() => {
+    const data = loadData();
+    const updated = updateStreak(data);
+    setAppData(updated);
+
+    if (updated.streak > 1) {
+      setTimeout(() => {
+        toast.success(`🔥 ${updated.streak}-day streak! Keep rising!`, {
+          description: "Consistency is the key to transformation.",
+          duration: 4000,
+        });
+      }, 1500);
+    }
+  }, []);
+
+  const handleUpdateData = (newData: AppData) => {
+    setAppData(newData);
+    saveData(newData);
+  };
+
+  if (!appData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'oklch(0.97 0.02 75)' }}>
+        <div className="text-center animate-fade-in">
+          <div className="w-16 h-16 blob-shape mx-auto mb-4 animate-pulse-soft" style={{ background: 'oklch(0.54 0.12 42)' }} />
+          <p className="font-nunito text-muted-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>Rising...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+    <div className="min-h-screen" style={{ background: 'oklch(0.97 0.02 75)', fontFamily: 'Nunito, sans-serif' }}>
+      <AppHeader activeTab={activeTab} onTabChange={setActiveTab} streak={appData.streak} />
+      
+      <main className="pb-16">
+        {activeTab === 'quote' && (
+          <QuoteSection
+            appData={appData}
+            onUpdateData={handleUpdateData}
+          />
+        )}
+        {activeTab === 'goals' && (
+          <GoalsSection
+            appData={appData}
+            onUpdateData={handleUpdateData}
+          />
+        )}
+        {activeTab === 'manifestation' && (
+          <ManifestationSection
+            appData={appData}
+            onUpdateData={handleUpdateData}
+          />
+        )}
       </main>
+
+      <StatsBar appData={appData} />
     </div>
   );
 }
