@@ -3,9 +3,17 @@ ext {
     cordovaAndroidVersion = project.hasProperty('cordovaAndroidVersion') ? rootProject.ext.cordovaAndroidVersion : '14.0.1'
 }
 
-plugins {
-    id 'com.android.library'
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+    }
 }
+
+apply plugin: 'com.android.library'
 
 android {
     namespace = "capacitor.cordova.android.plugins"
