@@ -24,7 +24,8 @@ workflows:
             -Pandroid.injected.signing.store.file=app/dailyrise-release.keystore \
             -Pandroid.injected.signing.store.password=DailyRise@2026 \
             -Pandroid.injected.signing.key.alias=dailyrise-key \
-            -Pandroid.injected.signing.key.password=DailyRise@2026
+            -Pandroid.injected.signing.key.password=DailyRise@2026 \
+            --stacktrace
     artifacts:
       - android/app/build/outputs/bundle/release/app-release.aab
     publishing:
