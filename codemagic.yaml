@@ -1,6 +1,6 @@
 workflows:
   android-release:
-    name: Android Release Build
+    name: Android Release Build (APK)
     instance_type: mac_mini_m2
     max_build_duration: 120
     environment:
@@ -20,14 +20,14 @@ workflows:
       - name: Build Android App Bundle
         script: |
           cd android
-          ./gradlew bundleRelease \
+          ./gradlew assembleRelease \
             -Pandroid.injected.signing.store.file=app/dailyrise-release.keystore \
             -Pandroid.injected.signing.store.password=DailyRise@2026 \
             -Pandroid.injected.signing.key.alias=dailyrise-key \
             -Pandroid.injected.signing.key.password=DailyRise@2026 \
             --stacktrace
     artifacts:
-      - android/app/build/outputs/bundle/release/app-release.aab
+      - android/app/build/outputs/apk/release/app-release.apk
     publishing:
       email:
         recipients:
